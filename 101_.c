@@ -10,20 +10,35 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-void ingresarMatriz();
-void imprimirMatriz();
+int * ingresarMatriz(int n);
+
+//TODO: ARREGLAR FUNCION imprimirMatriz
+
+void imprimirMatriz(int * matriz);
 
 int main()
 {
-  int n,m;
+  int n=0,m=0;
+  int matriz1[n],matriz2[m];
 
   printf("Ingresa el tamaño de la primer matriz (n)>>> ");
   scanf("%d",&n);
-  /*
+
+  ingresarMatriz(n);
+  
   printf("Ingresa el tamaño de la segunda matriz (m)>>> ");
   scanf("%d",&m);
-  */
-  int matriz1[n][n];//,matriz2[m];
+  
+  ingresarMatriz(m);
+
+  //system("cls");
+ // imprimirMatriz(*matriz1);
+
+  return 0;
+}
+int * ingresarMatriz(int n)
+{
+  int matriz[n][n];//,matriz1[n];
  
   //INGRESAR VALORES
   for(int i=0;i<n;i++)
@@ -31,33 +46,25 @@ int main()
     for(int j=0;j<n;j++)
     {
       system("cls");
-      printf("n[%d][%d]= ",i,j);
-      scanf("%d",&matriz1[i][j]);
+      printf("matriz[%d][%d]= ",i,j);
+      scanf("%d",&matriz[i][j]);
     }
   }
-  system("cls");
+  return *matriz;
+}
+//TODO: BUSCAR COMO IMPRIMIR UNA MATRIZ CON PUNTEROS DESDE LA FUNCION 
+
+void imprimirMatriz(int * matriz)
+{
   //IMPRIMIR VALORES
-  printf("MATRIZ 1 \n");
-  for(int i=0;i<n;i++)
+  //TODO: DECLARAR VARIABLE PARA IMPRIMIR
+  for(int i=0;i<sizeof(matriz);i++)
   {
-    for(int j=0;j<n;j++)
+    for(int j=0;j<sizeof(matriz);j++)
     {
       if(j==0) printf("| ");
-      printf("%d ",matriz1[i][j]);
-      if(j==n-1) printf("|\n");
+      printf("%d ",matriz[i][j]);
+      if(j==-1) printf("|\n");
     }
     
   }
-
-  return 0;
-}
-
-void ingresarMatriz()
-{
-  //TODO: separar y mover el codigo de main aqui
-}
-
-void imprimirMatriz()
-{
-  //TODO: separar y mover el codigo de main aqui 
-}
