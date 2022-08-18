@@ -7,19 +7,22 @@
 *la suma A+B, resta A-B, multiplicación A*B, así como la obtención del determinante.
 */
 
+
 #include<stdio.h>
 #include<stdlib.h>
 
+int size;
+void imprimir(int (*p)[size][size],int);
+
 int main()
 {
-  int n=1,m=1;
-  
+    int n=0,m=0;
   //*********************INGRESAR MATRICES**********************************
     //MATRIZ 1    
   printf("Tamaño de la primer matriz: ");
   scanf("%d",&n);
     system("clear");
-  
+
   int matriz1[n][n];
   for(int i=0;i<n;i++)
   {
@@ -30,8 +33,8 @@ int main()
       }
   }
     system("clear");
-
-    //MATRIZ 2    
+    
+    //MATRIZ 2 
   printf("Tamaño de la segunda matriz: ");
   scanf("%d",&m);
     system("clear");
@@ -45,42 +48,33 @@ int main()
           scanf("%d",&matriz2[i][j]);
       }
   }
-     system("clear");
-     
-  //*********************IMPRIMIR MATRICES**********************************
-    //MATRIZ 1
-  printf("MATRIZ 1:\n");
-  for(int i=0;i<n;i++)
-    {
-        for(int j=0;j<n;j++)
-        {
-            printf("%3d",matriz1[i][j]);
-            
-        }
-        printf("\n");
-    } 
+    system("clear");
     
-    printf("\n");
-
-    //MATRIZ 2 
+  //*********************IMPRIMIR MATRICES**********************************
+  //IMPRIMIR MATRIZ 1    
+  printf("MATRIZ 1:\n");
+  size=n;
+  imprimir(&matriz1,size);
+  
+  printf("\n");
+  //IMPRIMIR MATRIZ 2
   printf("MATRIZ 2:\n");
+  size=m;
+  imprimir(&matriz2,size);
 
-  for(int i=0;i<n;i++)
-    {
-        for(int j=0;j<n;j++)
-        {
-            printf("%3d",matriz2[i][j]);
-            
-        }
-        printf("\n");
-    } 
   return 0;
 }
-/*
-  //POINTER
-  int (*p)[2][2];
-  p=&matriz1;
-  int ejemplo=(*p)[0][0];
-  
-  printf("\n%d\n",ejemplo);
-*/
+
+void imprimir(int (*p)[size][size],int num)
+{
+  for(int i=0;i<num;i++)
+    {
+        for(int j=0;j<num;j++)
+        {
+            printf("%3d",(*p)[i][j]);
+            
+        }
+        printf("\n");
+    } 
+}
+
