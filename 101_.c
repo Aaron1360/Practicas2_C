@@ -57,14 +57,15 @@ int main()
   {
       printf("OPERACIONES: \n");
       printf("VER MATRICES(1) \n");
-      printf("SALIR(2) \n");
+      printf("SUMAR A+B(2) \n");
+      printf("SALIR(5) \n");
       scanf("%d",&menu);
         system("clear");
     
       switch(menu)
       {
+          //*********************IMPRIMIR MATRICES**********************************
           case 1:
-            //*********************IMPRIMIR MATRICES**********************************
                 //IMPRIMIR MATRIZ A    
                 printf("MATRIZ A:\n");
                 size=n;
@@ -75,11 +76,15 @@ int main()
                 printf("MATRIZ B:\n");
                 size=m;
                 imprimir(&B,size);
+                
             break;
-            
-          case 2:
-            //*********************TERMINAR PROGRAMA**********************************
-
+          //*********************TERMINAR PROGRAMA**********************************
+          case 5:
+                
+                
+            break;
+          //*********************TERMINAR PROGRAMA**********************************
+          case 5:
                 flag=0;
             break;
       }
