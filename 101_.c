@@ -76,3 +76,11 @@ int main()
     } 
   return 0;
 }
+/*
+  //POINTER
+  int (*p)[2][2];
+  p=&matriz1;
+  int ejemplo=(*p)[0][0];
+  
+  printf("\n%d\n",ejemplo);
+*/
