@@ -12,7 +12,7 @@
 
 int main()
 {
-  int n=1,m=1,matriz1[n][n],matriz2[m][m];
+  int n=1,m=1;
   
   //*********************INGRESAR MATRICES**********************************
   //MATRIZ 1    
@@ -20,6 +20,7 @@ int main()
   scanf("%d",&n);
     system("clear");
   
+  int matriz1[n][n];
   for(int i=0;i<n;i++)
   {
       for(int j=0;j<n;j++)
@@ -35,6 +36,7 @@ int main()
   scanf("%d",&m);
     system("clear");
   
+  int matriz2[m][m];
   for(int i=0;i<m;i++)
   {
       for(int j=0;j<m;j++)
