@@ -15,7 +15,7 @@ int main()
   int n=1,m=1;
   
   //*********************INGRESAR MATRICES**********************************
-  //MATRIZ 1    
+    //MATRIZ 1    
   printf("Tamaño de la primer matriz: ");
   scanf("%d",&n);
     system("clear");
@@ -31,7 +31,7 @@ int main()
   }
     system("clear");
 
-  //MATRIZ 2    
+    //MATRIZ 2    
   printf("Tamaño de la segunda matriz: ");
   scanf("%d",&m);
     system("clear");
@@ -48,6 +48,31 @@ int main()
      system("clear");
      
   //*********************IMPRIMIR MATRICES**********************************
-  
+    //MATRIZ 1
+  printf("MATRIZ 1:\n");
+  for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            printf("%3d",matriz1[i][j]);
+            
+        }
+        printf("\n");
+    } 
+    
+    printf("\n");
+
+    //MATRIZ 2 
+  printf("MATRIZ 2:\n");
+
+  for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            printf("%3d",matriz2[i][j]);
+            
+        }
+        printf("\n");
+    } 
   return 0;
 }
