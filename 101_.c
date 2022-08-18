@@ -16,52 +16,75 @@ void imprimir(int (*p)[size][size],int);
 
 int main()
 {
-    int n=0,m=0;
+    int n=0,m=0,menu=0,flag=1;
   //*********************INGRESAR MATRICES**********************************
-    //MATRIZ 1    
-  printf("Tamaño de la primer matriz: ");
+    //MATRIZ A    
+  printf("Tamaño de la matriz A: ");
   scanf("%d",&n);
     system("clear");
 
-  int matriz1[n][n];
+  int A[n][n];
   for(int i=0;i<n;i++)
   {
       for(int j=0;j<n;j++)
       {
-          printf("M1[%d][%d]= ",i,j);
-          scanf("%d",&matriz1[i][j]);
+          printf("A[%d][%d]= ",i,j);
+          scanf("%d",&A[i][j]);
+              system("clear");
       }
   }
     system("clear");
     
-    //MATRIZ 2 
-  printf("Tamaño de la segunda matriz: ");
+    //MATRIZ B 
+  printf("Tamaño de la matriz B: ");
   scanf("%d",&m);
     system("clear");
   
-  int matriz2[m][m];
+  int B[m][m];
   for(int i=0;i<m;i++)
   {
       for(int j=0;j<m;j++)
       {
-          printf("M2[%d][%d]= ",i,j);
-          scanf("%d",&matriz2[i][j]);
+          printf("B[%d][%d]= ",i,j);
+          scanf("%d",&B[i][j]);
+            system("clear");
       }
   }
     system("clear");
     
-  //*********************IMPRIMIR MATRICES**********************************
-  //IMPRIMIR MATRIZ 1    
-  printf("MATRIZ 1:\n");
-  size=n;
-  imprimir(&matriz1,size);
-  
-  printf("\n");
-  //IMPRIMIR MATRIZ 2
-  printf("MATRIZ 2:\n");
-  size=m;
-  imprimir(&matriz2,size);
+  //*********************ELEGIR OPERACION**********************************
+  while(flag)
+  {
+      printf("OPERACIONES: \n");
+      printf("VER MATRICES(1) \n");
+      printf("SALIR(2) \n");
+      scanf("%d",&menu);
+        system("clear");
+    
+      switch(menu)
+      {
+          case 1:
+            //*********************IMPRIMIR MATRICES**********************************
+                //IMPRIMIR MATRIZ A    
+                printf("MATRIZ A:\n");
+                size=n;
+                imprimir(&A,size);
+                
+                printf("\n");
+                //IMPRIMIR MATRIZ B
+                printf("MATRIZ B:\n");
+                size=m;
+                imprimir(&B,size);
+            break;
+            
+          case 2:
+            //*********************TERMINAR PROGRAMA**********************************
 
+                flag=0;
+            break;
+      }
+  } 
+  printf("\n\tsuccess!");
   return 0;
 }
 
