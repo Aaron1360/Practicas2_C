@@ -15,6 +15,7 @@ int size;
 
 void imprimir(int (*p)[size][size],int);
 void sumar(int (*p)[size][size],int (*q)[size][size],int (*s)[size][size]);
+void restar(int (*p)[size][size],int (*q)[size][size],int (*r)[size][size]);
 
 int main()
 {
@@ -57,9 +58,10 @@ int main()
   //*********************ELEGIR OPERACION**********************************
   while(out)
   {
-      printf("OPERACIONES: \n");
+      printf("\nOPERACIONES: \n");
       printf("VER MATRICES(1) \n");
       printf("SUMAR A+B(2) \n");
+      printf("RESTAR A+B(3) \n");
       printf("SALIR(5) \n");
       scanf("%d",&menu);
         system("clear");
@@ -79,14 +81,52 @@ int main()
                 size=m;
                 imprimir(&B,size);
                 
+                while(wait)
+                    {
+                        scanf("%d",&wait);
+                        if(wait)wait=0;
+                    }
+                    wait=1;
+                    system("clear");
             break;
           //*********************SUMAR MATRICES**********************************
           case 2:
                 if(n==m)
                 {
+                    printf("SUMA=\n");
                     size=n;
                     int suma[size][size];
                     sumar(&A,&B,&suma);
+                    
+                    while(wait)
+                    {
+                        scanf("%d",&wait);
+                        if(wait)wait=0;
+                    }
+                    wait=1;
+                    system("clear");
+
+                }
+                else
+                {
+                    while(wait)
+                    {
+                        printf("\n!Las matrices no son del mismo tamaño!\n");
+                        scanf("%d",&wait);
+                        if(wait)wait=0;
+                    }
+                    wait=1;
+                    system("clear");
+                }
+            break;
+            //*********************RESTAR MATRICES**********************************
+          case 3:
+                if(n==m)
+                {
+                    printf("RESTA=\n");
+                    size=n;
+                    int resta[size][size];
+                    restar(&A,&B,&resta);
                     
                     while(wait)
                     {
@@ -140,6 +180,19 @@ void sumar(int (*p)[size][size],int (*q)[size][size],int (*s)[size][size])
         {
             (*s)[i][j]=(*p)[i][j]+(*q)[i][j];
             printf("%3d",(*s)[i][j]);
+        }
+        printf("\n");
+    } 
+}
+//*********************FUNCION RESTAR**********************************
+void restar(int (*p)[size][size],int (*q)[size][size],int (*r)[size][size])
+{
+   for(int i=0;i<size;i++)
+    {
+        for(int j=0;j<size;j++)
+        {
+            (*r)[i][j]=(*p)[i][j]-(*q)[i][j];
+            printf("%3d",(*r)[i][j]);
         }
         printf("\n");
     } 
