@@ -12,11 +12,13 @@
 #include<stdlib.h>
 
 int size;
+
 void imprimir(int (*p)[size][size],int);
+void sumar(int (*p)[size][size],int (*q)[size][size],int (*s)[size][size]);
 
 int main()
 {
-    int n=0,m=0,menu=0,flag=1;
+    int n=0,m=0,menu=0,out=1,wait=1;
   //*********************INGRESAR MATRICES**********************************
     //MATRIZ A    
   printf("Tamaño de la matriz A: ");
@@ -53,7 +55,7 @@ int main()
     system("clear");
     
   //*********************ELEGIR OPERACION**********************************
-  while(flag)
+  while(out)
   {
       printf("OPERACIONES: \n");
       printf("VER MATRICES(1) \n");
@@ -78,21 +80,45 @@ int main()
                 imprimir(&B,size);
                 
             break;
-          //*********************TERMINAR PROGRAMA**********************************
-          case 5:
-                
-                
+          //*********************SUMAR MATRICES**********************************
+          case 2:
+                if(n==m)
+                {
+                    size=n;
+                    int suma[size][size];
+                    sumar(&A,&B,&suma);
+                    
+                    while(wait)
+                    {
+                        scanf("%d",&wait);
+                        if(wait)wait=0;
+                    }
+                    wait=1;
+                    system("clear");
+
+                }
+                else
+                {
+                    while(wait)
+                    {
+                        printf("\n!Las matrices no son del mismo tamaño!\n");
+                        scanf("%d",&wait);
+                        if(wait)wait=0;
+                    }
+                    wait=1;
+                    system("clear");
+                }
             break;
           //*********************TERMINAR PROGRAMA**********************************
           case 5:
-                flag=0;
+                out=0;
             break;
       }
   } 
   printf("\n\tsuccess!");
   return 0;
 }
-
+//*********************FUNCION IMPRIMIR**********************************
 void imprimir(int (*p)[size][size],int num)
 {
   for(int i=0;i<num;i++)
@@ -105,4 +131,19 @@ void imprimir(int (*p)[size][size],int num)
         printf("\n");
     } 
 }
+//*********************FUNCION SUMAR**********************************
+void sumar(int (*p)[size][size],int (*q)[size][size],int (*s)[size][size])
+{
+   for(int i=0;i<size;i++)
+    {
+        for(int j=0;j<size;j++)
+        {
+            (*s)[i][j]=(*p)[i][j]+(*q)[i][j];
+            printf("%3d",(*s)[i][j]);
+        }
+        printf("\n");
+    } 
+}
+
+
 
