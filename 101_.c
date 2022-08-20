@@ -16,6 +16,7 @@ int size;
 void imprimir(int (*p)[size][size],int);
 void sumar(int (*p)[size][size],int (*q)[size][size],int (*s)[size][size]);
 void restar(int (*p)[size][size],int (*q)[size][size],int (*r)[size][size]);
+void producto(int (*p)[size][size],int (*q)[size][size],int (*m)[size][size]);
 
 int main()
 {
@@ -62,6 +63,7 @@ int main()
       printf("VER MATRICES(1) \n");
       printf("SUMAR A+B(2) \n");
       printf("RESTAR A+B(3) \n");
+      printf("MULTIPLICAR A*B(4) \n");
       printf("SALIR(5) \n");
       scanf("%d",&menu);
         system("clear");
@@ -149,7 +151,37 @@ int main()
                     system("clear");
                 }
             break;
-          //*********************TERMINAR PROGRAMA**********************************
+            //*********************MULTIPLICAR MATRICES**********************************
+          case 4:
+                if(n==m)
+                {
+                    printf("PRODUCTO=\n");
+                    size=n;
+                    int prod[size][size];
+                    producto(&A,&B,&prod);
+                    
+                    while(wait)
+                    {
+                        scanf("%d",&wait);
+                        if(wait)wait=0;
+                    }
+                    wait=1;
+                    system("clear");
+
+                }
+                else
+                {
+                    while(wait)
+                    {
+                        printf("\n!Las matrices no son del mismo tamaño!\n");
+                        scanf("%d",&wait);
+                        if(wait)wait=0;
+                    }
+                    wait=1;
+                    system("clear");
+                }
+            break;          
+            //*********************TERMINAR PROGRAMA**********************************
           case 5:
                 out=0;
             break;
@@ -197,6 +229,26 @@ void restar(int (*p)[size][size],int (*q)[size][size],int (*r)[size][size])
         printf("\n");
     } 
 }
+//*********************FUNCION PRODUCTO**********************************
+void producto(int (*p)[size][size],int (*q)[size][size],int (*m)[size][size])
+{
+    int suma=0;
+     for(int i=0;i<size;i++)
+    {
+        for(int j=0;j<size;j++)
+        {
+            for(int k=0;k<size;k++)
+            {
+                suma+=((*p)[i][k])*((*q)[k][j]);
+            }
+            (*m)[i][j]=suma;
+            printf("%3d ",(*m)[i][j]);
+            suma=0;
+        }
+        printf("\n");
+    }
+}
+
 
 
 
