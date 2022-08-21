@@ -10,16 +10,20 @@
 
 #include<stdio.h>
 #include<stdlib.h>
-
+#include <ctype.h>
+#include <math.h>
 int size;
 
 void imprimir(int (*p)[size][size],int);
 void sumar(int (*p)[size][size],int (*q)[size][size],int (*s)[size][size]);
 void restar(int (*p)[size][size],int (*q)[size][size],int (*r)[size][size]);
 void producto(int (*p)[size][size],int (*q)[size][size],int (*m)[size][size]);
+int determinante(int ma[size][size], int );
+int cofactor(int ma[size][size], int , int , int );
 
 int main()
 {
+    char d;
     int n=0,m=0,menu=0,out=1,wait=1;
   //*********************INGRESAR MATRICES**********************************
     //MATRIZ A    
@@ -64,7 +68,8 @@ int main()
       printf("SUMAR A+B(2) \n");
       printf("RESTAR A+B(3) \n");
       printf("MULTIPLICAR A*B(4) \n");
-      printf("SALIR(5) \n");
+      printf("DETERMINANTE(5) \n");
+      printf("SALIR(6) \n");
       scanf("%d",&menu);
         system("clear");
     
@@ -180,9 +185,54 @@ int main()
                     wait=1;
                     system("clear");
                 }
-            break;          
-            //*********************TERMINAR PROGRAMA**********************************
+            break;
+            //*********************DETERMINANTE**********************************
           case 5:
+              //TODO: ARREGLAR LAS FUNCIONES PARA NO BORRAR LA MATRIZ A
+                system("clear");
+                printf("\nElige la matriz (A)/(B):");
+                scanf("%s",&d);
+                
+                if(toupper(d)=='A')
+                {
+                    size=n;
+                    printf("\nEl determinante es: %d\n", determinante(A, size));
+                    while(wait)
+                    {
+                        scanf("%d",&wait);
+                        if(wait)wait=0;
+                    }
+                    wait=1;
+                    system("clear");
+                }
+                
+                else if(d=='B')
+                {
+                    size=m;
+                    printf("\nEl determinante es: %d\n", determinante(B, size));
+                    while(wait)
+                    {
+                        scanf("%d",&wait);
+                        if(wait)wait=0;
+                    }
+                    wait=1;
+                    system("clear");
+                }
+                
+                else 
+                {
+                    printf("\nsolo puedes elegir 'A' o 'B'\n");
+                    while(wait)
+                    {
+                        scanf("%d",&wait);
+                        if(wait)wait=0;
+                    }
+                    wait=1;
+                    system("clear");
+                }
+            break;
+            //*********************TERMINAR PROGRAMA**********************************
+          case 6:
                 out=0;
             break;
       }
@@ -247,6 +297,45 @@ void producto(int (*p)[size][size],int (*q)[size][size],int (*m)[size][size])
         }
         printf("\n");
     }
+}
+//*********************FUNCION DETERMINANTE**********************************
+int determinante(int ma[size][size], int ln)
+{
+   int det = 0, j;
+   
+   if (ln == 1) {
+      det = ma[0][0];
+   } else {
+      for (j = 0; j < ln; j++) {
+         det = det + ma[0][j] * cofactor(ma, ln, 0, j);
+      }
+   }
+   
+   return det;
+}
+//*********************FUNCION COFACTOR**********************************
+int cofactor(int ma[size][size], int ln, int f, int c)
+{
+   int sub[size][size];
+   int n = ln - 1;
+   int i, j;
+   
+   int x = 0;
+   int y = 0;
+   for (i = 0; i < ln; i++) {
+      for (j = 0; j < ln; j++) {
+         if (i != f && j != c) {
+            sub[x][y] = ma[i][j];
+            y++;
+            if (y >= n) {
+               x++;
+               y = 0;
+            }
+         }
+      }
+   }
+   
+   return pow(-1.0, f + c) * determinante(sub, n);
 }
 
 
