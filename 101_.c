@@ -5,6 +5,7 @@
 *
 *1.-Desarrollar un programa que permita el ingreso de dos matrices cuadradas nxn (A y B) y que se efectuen operaciones sobre ellas, 
 *la suma A+B, resta A-B, multiplicación A*B, así como la obtención del determinante.
+(CON FUNCIONES)
 */
 
 
