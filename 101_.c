@@ -13,6 +13,7 @@
 #include<stdlib.h>
 #include <ctype.h>
 #include <math.h>
+
 int size;
 
 void imprimir(int (*p)[size][size],int);
