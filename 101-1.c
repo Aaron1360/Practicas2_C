@@ -1,11 +1,11 @@
 /*
 *Desarrollador: Aaron Moreno Villeda
 *
-*Fecha de creación: 14/08/22
+*Fecha de creación: 22/08/22
 *
 *1.-Desarrollar un programa que permita el ingreso de dos matrices cuadradas nxn (A y B) y que se efectuen operaciones sobre ellas, 
 *la suma A+B, resta A-B, multiplicación A*B, así como la obtención del determinante.
-(SIN) FUNCIONES)
+(SIN PUNTEROS)
 */
 
 #include <stdio.h>
@@ -174,9 +174,10 @@ int main()
                     system("cls");
                 }
             break;
-        case 6:
+        case 5:
             //*********************DETERMINANTES**********************************
-            
+              //COFACTORES
+
             break;
         case 6:
             //*********************TERMINAR PROGRAMA**********************************
