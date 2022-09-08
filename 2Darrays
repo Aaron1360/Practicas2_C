@@ -1,50 +1,73 @@
-#include <stdio.h>
 
-void input_array(int rows,int cols,int array[rows][cols]);
-void print_array(int rows,int cols,int array[rows][cols]);
+#include <stdio.h>
+#include <stdlib.h>
+void input_array(int size,int array[size][size]);
+void print_array(int size,int array[size][size]);
+void sum(int size,int array1[size][size],int array2[size][size],int result[size][size]);
 
 int main()
 {
-    int rows=0, cols=0;
-    printf("rows = ");
-    scanf("%d",&rows);
-    printf("cols = ");
-    scanf("%d",&cols);
+    int size=0;
+    printf("size = ");
+    scanf("%d",&size);
     
-    int array[rows][cols];
+    //SQUARE MATRIX DECLARATION
+    int array1[size][size],array2[size][size],result[size][size];
     
-    input_array(rows,cols,array);
+    //INPUT MATRIX DATA
+    printf("\n>>>>>>>>>>>>>>>\n");
+    input_array(size,array1);
+    printf("\n>>>>>>>>>>>>>>>\n");
+    input_array(size,array2);
+    system("clear");
     
-    printf("\n");
+    //PRINT MATRIX
+    printf("ARRAY 1: \n");
+    print_array(size,array1);
+    printf("\n\nARRAY 2: \n");
+    print_array(size,array2);
     
-    print_array(rows,cols,array);
+    //MATRIX OPERATION
+    sum(size,array1,array2,result);
+    printf("\nSUMA: \n");
+    print_array(size,result);
     
-    printf("\n****************\n");
-    array[0][0]=10;
-    
-    print_array(rows,cols,array);
     return 0;
 }
-//INPUT DATA
-void input_array(int rows,int cols,int array[rows][cols])
+
+void input_array(int size,int array[size][size])
 {
-    for(int i=0;i<rows;i++)
+    int num=0;
+    printf("Enter a number: ");
+    scanf("%d",&num);
+    for(int i=0;i<size;i++)
     {
-        for(int j=0;j<cols;j++)
+        for(int j=0;j<size;j++)
         {
-            array[i][j]=5;
+            array[i][j]=num;
         }
     }    
 }
-//PRINT ARRAY
-void print_array(int rows,int cols,int array[rows][cols])
+
+void print_array(int size,int array[size][size])
 {
-   for(int i=0;i<rows;i++)
+   for(int i=0;i<size;i++)
     {
-        for(int j=0;j<cols;j++)
+        for(int j=0;j<size;j++)
         {
-            printf("[%d]\t",array[i][j]);
+            printf("[%d]  ",array[i][j]);
         }
         printf("\n");
+    } 
+}
+
+void sum(int size,int array1[size][size],int array2[size][size],int result[size][size])
+{
+    for(int i=0;i<size;i++)
+    {
+        for(int j=0;j<size;j++)
+        {
+            result[i][j]=array1[i][j]+array2[i][j];
+        }
     } 
 }
