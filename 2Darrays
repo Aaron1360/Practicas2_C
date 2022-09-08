@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+void input_array(int rows,int cols,int array[rows][cols]);
+void print_array(int rows,int cols,int array[rows][cols]);
+
+int main()
+{
+    int rows=0, cols=0;
+    printf("rows = ");
+    scanf("%d",&rows);
+    printf("cols = ");
+    scanf("%d",&cols);
+    
+    int array[rows][cols];
+    
+    input_array(rows,cols,array);
+    
+    printf("\n");
+    
+    print_array(rows,cols,array);
+    
+    printf("\n****************\n");
+    array[0][0]=10;
+    
+    print_array(rows,cols,array);
+    return 0;
+}
+//INPUT DATA
+void input_array(int rows,int cols,int array[rows][cols])
+{
+    for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<cols;j++)
+        {
+            array[i][j]=5;
+        }
+    }    
+}
+//PRINT ARRAY
+void print_array(int rows,int cols,int array[rows][cols])
+{
+   for(int i=0;i<rows;i++)
+    {
+        for(int j=0;j<cols;j++)
+        {
+            printf("[%d]\t",array[i][j]);
+        }
+        printf("\n");
+    } 
+}
