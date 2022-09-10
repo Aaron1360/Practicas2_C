@@ -3,14 +3,22 @@
 #include<ctype.h>
 #include<math.h>
 
+//>>>>>>>>>>PROTOTYPES>>>>>>>>>>>>>
 void in_values(int size,int array[size][size]);
+
 void print_matrix(int size,int array[size][size]);
-void add(int size,int array1[size][size],int array2[size][size],int res[size][size]);
-void sub(int size,int array1[size][size],int array2[size][size],int res[size][size]);
-void mult(int size,int array1[size][size],int array2[size][size],int res[size][size]);
+
+void add(int size,int array1[size][size],int array2[size][size]);
+
+void sub(int size,int array1[size][size],int array2[size][size]);
+
+void mult(int size,int array1[size][size],int array2[size][size]);
+
 int det(int size,int array[size][size]);
+
 int cof(int size,int array[size][size],int row,int col);
 
+//>>>>>>>>>>>MAIN FUNCTION>>>>>>>>>>>
 int main()
 {
     int order=0,menu=0,out=1,wait=1;
@@ -19,7 +27,7 @@ int main()
     printf("Enter matrix size: ");
     scanf("%d", &order);
     system("clear");
-    int matrix1[order][order],matrix2[order][order],result[order][order];
+    int matrix1[order][order],matrix2[order][order];
     printf("**********MATRIX CALCULATOR*********\n\n");
     
     //>>>>>>>>>>>>>ENTER MATRIX VALUES>>>>>>>>>>>>>
@@ -30,14 +38,15 @@ int main()
     printf("MATRIX B: \n");
     in_values(order,matrix2);
     system("clear");
-    //*********************CHOOSE OPERATION**********************************
+    
+    //>>>>>>>>>>>>>>>>>CHOOSE OPERATION>>>>>>>>>>>>>>>>>
     while(out)
     {
     printf("**********MATRIX CALCULATOR*********\n\n");
     printf("OPERATIONS: \n");
     printf("PRINT ARRAYS(1) \n");
     printf("ADD A+B(2) \n");
-    printf("SUBTRACT A+B(3) \n");
+    printf("SUBTRACT A-B(3) \n");
     printf("MULTIPLY A*B(4) \n");
     printf("DETERMINANT(5) \n");
     printf("EXIT(6) \n");
@@ -46,11 +55,13 @@ int main()
     
         switch(menu)
         {
-            //>>>>>>>>>>>>>PRINT MATRIX>>>>>>>>>>>>>
+            //>>>>>>>>>>>>>PRINT>>>>>>>>>>>>>
             case 1:
                 printf("**********MATRIX CALCULATOR*********\n\n");
                 printf("MATRIX A: \n");
                 print_matrix(order,matrix1);
+                printf("\nMATRIX B: \n");
+                print_matrix(order,matrix2);
                 while(wait)
                     {
                         scanf("%d",&wait);
@@ -59,9 +70,11 @@ int main()
                     wait=1;
                     system("clear");
                 break;
-            //>>>>>>>>>>>>>ADD MATRIX>>>>>>>>>>>>>
+            //>>>>>>>>>>>>>ADD>>>>>>>>>>>>>
             case 2:
-                
+                printf("**********MATRIX CALCULATOR*********\n\n");
+                printf("SUM: \n");
+                add(order,matrix1,matrix2);
                 while(wait)
                     {
                         scanf("%d",&wait);
@@ -70,8 +83,11 @@ int main()
                     wait=1;
                     system("clear");
                 break;
-            //>>>>>>>>>>>>>SUBTRACT MATRIX>>>>>>>>>>>>>
+            //>>>>>>>>>>>>>SUBTRACT>>>>>>>>>>>>>
             case 3:
+                printf("**********MATRIX CALCULATOR*********\n\n");
+                printf("SUBTRACTION: \n");
+                sub(order,matrix1,matrix2);
                 while(wait)
                     {
                         scanf("%d",&wait);
@@ -80,8 +96,11 @@ int main()
                     wait=1;
                     system("clear");
                 break;
-            //>>>>>>>>>>>>>MULTIPLY MATRIX>>>>>>>>>>>>>
+            //>>>>>>>>>>>>>MULTIPLY>>>>>>>>>>>>>
             case 4:
+                printf("**********MATRIX CALCULATOR*********\n\n");
+                printf("MULTIPLICATION: \n");
+                mult(order,matrix1,matrix2);
                 while(wait)
                     {
                         scanf("%d",&wait);
@@ -92,6 +111,7 @@ int main()
                 break;
             //>>>>>>>>>>>>>DETERMINANTS>>>>>>>>>>>>>
             case 5:
+                printf("**********MATRIX CALCULATOR*********\n\n");
                 while(wait)
                     {
                         scanf("%d",&wait);
@@ -105,6 +125,7 @@ int main()
                 out=0;
                 break;
             default:
+                printf("**********MATRIX CALCULATOR*********\n\n");
                 printf("\nOPTIONS 1-6 ONLY AVAILABLE");
                break; 
         }
@@ -138,39 +159,51 @@ void print_matrix(int size,int array[size][size])
     }
 }
 //>>>>>>>>>>>>>ADD FUNCTION>>>>>>>>>>>>>
-void add(int size,int array1[size][size],int array2[size][size],int res[size][size])
+void add(int size,int array1[size][size],int array2[size][size])
 {
+    int res[size][size];
     for(int i=0;i<size;i++)
     {
         for(int j=0;j<size;j++)
         {
-           printf("[%d] ",array1[i][j]);
+            res[i][j]=array1[i][j]+array2[i][j];
+            printf("[%d]",res[i][j]);
         }
-    printf("\n");
-    }
+        printf("\n");
+    } 
 }
 //>>>>>>>>>>>>>SUBTRACT FUNCTION>>>>>>>>>>>>>
-void sub(int size,int array1[size][size],int array2[size][size],int res[size][size])
+void sub(int size,int array1[size][size],int array2[size][size])
 {
+    int res[size][size];
     for(int i=0;i<size;i++)
     {
         for(int j=0;j<size;j++)
         {
-           printf("[%d] ",array1[i][j]);
+            res[i][j]=array1[i][j]-array2[i][j];
+            printf("[%d]",res[i][j]);
         }
-    printf("\n");
+        printf("\n");
     }
 }
 //>>>>>>>>>>>>>MULTIPLY FUNCTION>>>>>>>>>>>>>
-void mult(int size,int array1[size][size],int array2[size][size],int res[size][size])
+void mult(int size,int array1[size][size],int array2[size][size])
 {
-    for(int i=0;i<size;i++)
+    int temp=0;
+    int m[size][size];
+     for(int i=0;i<size;i++)
     {
         for(int j=0;j<size;j++)
         {
-           printf("[%d] ",array1[i][j]);
+            for(int k=0;k<size;k++)
+            {
+                temp+=(array1[i][k])*(array2[k][j]);
+            }
+            m[i][j]=temp;
+            printf("[%d] ",m[i][j]);
+            temp=0;
         }
-    printf("\n");
+        printf("\n");
     }
 }
 //>>>>>>>>>>>>>DETERMINANT FUNCTION>>>>>>>>>>>>>
@@ -197,4 +230,3 @@ int cof(int size,int array[size][size],int row,int col)
     printf("\n");
     }
 }
-
