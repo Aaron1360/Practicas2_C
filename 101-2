@@ -1,26 +1,35 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include <ctype.h>
-#include <math.h>
+#include<ctype.h>
+#include<math.h>
 
 void in_values(int size,int array[size][size]);
 void print_matrix(int size,int array[size][size]);
+void add(int size,int array1[size][size],int array2[size][size],int res[size][size]);
+void sub(int size,int array1[size][size],int array2[size][size],int res[size][size]);
+void mult(int size,int array1[size][size],int array2[size][size],int res[size][size]);
+int det(int size,int array[size][size]);
+int cof(int size,int array[size][size],int row,int col);
 
 int main()
 {
-    int order=0,n=0,m=0,menu=0,out=1,wait=1;
+    int order=0,menu=0,out=1,wait=1;
     
     printf("**********MATRIX CALCULATOR*********\n\n");
     printf("Enter matrix size: ");
     scanf("%d", &order);
     system("clear");
-    int matrix1[order][order],matrix2[order][order];
+    int matrix1[order][order],matrix2[order][order],result[order][order];
+    printf("**********MATRIX CALCULATOR*********\n\n");
     
     //>>>>>>>>>>>>>ENTER MATRIX VALUES>>>>>>>>>>>>>
     printf("MATRIX A: \n");
     in_values(order,matrix1);
     system("clear");
-    
+    printf("**********MATRIX CALCULATOR*********\n\n");
+    printf("MATRIX B: \n");
+    in_values(order,matrix2);
+    system("clear");
     //*********************CHOOSE OPERATION**********************************
     while(out)
     {
@@ -39,8 +48,50 @@ int main()
         {
             //>>>>>>>>>>>>>PRINT MATRIX>>>>>>>>>>>>>
             case 1:
+                printf("**********MATRIX CALCULATOR*********\n\n");
                 printf("MATRIX A: \n");
                 print_matrix(order,matrix1);
+                while(wait)
+                    {
+                        scanf("%d",&wait);
+                        if(wait)wait=0;
+                    }
+                    wait=1;
+                    system("clear");
+                break;
+            //>>>>>>>>>>>>>ADD MATRIX>>>>>>>>>>>>>
+            case 2:
+                
+                while(wait)
+                    {
+                        scanf("%d",&wait);
+                        if(wait)wait=0;
+                    }
+                    wait=1;
+                    system("clear");
+                break;
+            //>>>>>>>>>>>>>SUBTRACT MATRIX>>>>>>>>>>>>>
+            case 3:
+                while(wait)
+                    {
+                        scanf("%d",&wait);
+                        if(wait)wait=0;
+                    }
+                    wait=1;
+                    system("clear");
+                break;
+            //>>>>>>>>>>>>>MULTIPLY MATRIX>>>>>>>>>>>>>
+            case 4:
+                while(wait)
+                    {
+                        scanf("%d",&wait);
+                        if(wait)wait=0;
+                    }
+                    wait=1;
+                    system("clear");
+                break;
+            //>>>>>>>>>>>>>DETERMINANTS>>>>>>>>>>>>>
+            case 5:
                 while(wait)
                     {
                         scanf("%d",&wait);
@@ -54,8 +105,8 @@ int main()
                 out=0;
                 break;
             default:
-                printf("\nOPTION 1-6 ONLY AVAILABLE");
-                
+                printf("\nOPTIONS 1-6 ONLY AVAILABLE");
+               break; 
         }
     } 
    
@@ -86,5 +137,64 @@ void print_matrix(int size,int array[size][size])
     printf("\n");
     }
 }
-
+//>>>>>>>>>>>>>ADD FUNCTION>>>>>>>>>>>>>
+void add(int size,int array1[size][size],int array2[size][size],int res[size][size])
+{
+    for(int i=0;i<size;i++)
+    {
+        for(int j=0;j<size;j++)
+        {
+           printf("[%d] ",array1[i][j]);
+        }
+    printf("\n");
+    }
+}
+//>>>>>>>>>>>>>SUBTRACT FUNCTION>>>>>>>>>>>>>
+void sub(int size,int array1[size][size],int array2[size][size],int res[size][size])
+{
+    for(int i=0;i<size;i++)
+    {
+        for(int j=0;j<size;j++)
+        {
+           printf("[%d] ",array1[i][j]);
+        }
+    printf("\n");
+    }
+}
+//>>>>>>>>>>>>>MULTIPLY FUNCTION>>>>>>>>>>>>>
+void mult(int size,int array1[size][size],int array2[size][size],int res[size][size])
+{
+    for(int i=0;i<size;i++)
+    {
+        for(int j=0;j<size;j++)
+        {
+           printf("[%d] ",array1[i][j]);
+        }
+    printf("\n");
+    }
+}
+//>>>>>>>>>>>>>DETERMINANT FUNCTION>>>>>>>>>>>>>
+int det(int size,int array[size][size])
+{
+    for(int i=0;i<size;i++)
+    {
+        for(int j=0;j<size;j++)
+        {
+           printf("[%d] ",array[i][j]);
+        }
+    printf("\n");
+    }
+}
+//>>>>>>>>>>>>>COFACTOR FUNCTION>>>>>>>>>>>>>
+int cof(int size,int array[size][size],int row,int col)
+{
+    for(int i=0;i<size;i++)
+    {
+        for(int j=0;j<size;j++)
+        {
+           printf("[%d] ",array[i][j]);
+        }
+    printf("\n");
+    }
+}
 
