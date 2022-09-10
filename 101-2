@@ -112,6 +112,54 @@ int main()
             //>>>>>>>>>>>>>DETERMINANTS>>>>>>>>>>>>>
             case 5:
                 printf("**********MATRIX CALCULATOR*********\n\n");
+                int select;
+                printf("MATRIX(1 or 2): ");
+                scanf("%d",&select);
+                
+                if(select==1)
+                {
+                    printf("DET(MATRIX 1)= %d\n",det(order,matrix1));
+                    while(wait)
+                    {
+                        scanf("%d",&wait);
+                        if(wait)wait=0;
+                    }
+                    wait=1;
+                    system("clear");
+                }
+                else if(select==2)
+                {
+                    printf("DET(MATRIX 1)= %d\n",det(order,matrix2));
+                    while(wait)
+                    {
+                        scanf("%d",&wait);
+                        if(wait)wait=0;
+                    }
+                    wait=1;
+                    system("clear");
+                }
+                else
+                {
+                    system("clear");
+                    printf("**********MATRIX CALCULATOR*********\n\n");
+                    printf("ONLY MATRIX 1 OR 2 AVAILABLE\n");
+                    while(wait)
+                    {
+                        scanf("%d",&wait);
+                        if(wait)wait=0;
+                    }
+                    wait=1;
+                    system("clear");
+                }
+                break;
+            //>>>>>>>>>>>>>FINISH PROGRAM>>>>>>>>>>>>>
+            case 6:
+                out=0;
+                break;
+            default:
+                system("clear");
+                printf("**********MATRIX CALCULATOR*********\n\n");
+                printf("\nONLY OPTIONS 1-6 AVAILABLE");
                 while(wait)
                     {
                         scanf("%d",&wait);
@@ -119,14 +167,6 @@ int main()
                     }
                     wait=1;
                     system("clear");
-                break;
-            //>>>>>>>>>>>>>FINISH PROGRAM>>>>>>>>>>>>>
-            case 6:
-                out=0;
-                break;
-            default:
-                printf("**********MATRIX CALCULATOR*********\n\n");
-                printf("\nOPTIONS 1-6 ONLY AVAILABLE");
                break; 
         }
     } 
@@ -209,24 +249,42 @@ void mult(int size,int array1[size][size],int array2[size][size])
 //>>>>>>>>>>>>>DETERMINANT FUNCTION>>>>>>>>>>>>>
 int det(int size,int array[size][size])
 {
-    for(int i=0;i<size;i++)
+     int result=0;
+    
+    if(size==1){result=array[0][0];}
+    
+    else
     {
         for(int j=0;j<size;j++)
         {
-           printf("[%d] ",array[i][j]);
+            result+=array[0][j]*cof(size,array,0,j);
         }
-    printf("\n");
     }
+    return result;
 }
 //>>>>>>>>>>>>>COFACTOR FUNCTION>>>>>>>>>>>>>
 int cof(int size,int array[size][size],int row,int col)
 {
+    int orden=size-1;
+    int sub[orden][orden];
+    int x=0,y=0;
+    
     for(int i=0;i<size;i++)
     {
         for(int j=0;j<size;j++)
         {
-           printf("[%d] ",array[i][j]);
+            if((i!=row) && (j!=col))
+            {
+                sub[x][y]=array[i][j];
+                y++;
+                
+                if(y>=orden)
+                {
+                    x++;
+                    y=0;
+                }
+            }
         }
-    printf("\n");
-    }
+    } 
+    return pow(-1.0,row+col)*det(orden,sub);
 }
