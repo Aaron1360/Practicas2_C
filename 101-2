@@ -8,18 +8,57 @@ void print_matrix(int size,int array[size][size]);
 
 int main()
 {
-    int order=0;
+    int order=0,n=0,m=0,menu=0,out=1,wait=1;
+    
+    printf("**********MATRIX CALCULATOR*********\n\n");
     printf("Enter matrix size: ");
     scanf("%d", &order);
+    system("clear");
     int matrix1[order][order],matrix2[order][order];
-    printf("\n");
     
     //>>>>>>>>>>>>>ENTER MATRIX VALUES>>>>>>>>>>>>>
-    printf("MATRIX 1: \n");
+    printf("MATRIX A: \n");
     in_values(order,matrix1);
-    //>>>>>>>>>>>>>PRINT MATRIX>>>>>>>>>>>>>
-    printf("MATRIX 1: \n");
-    print_matrix(order,matrix1);
+    system("clear");
+    
+    //*********************CHOOSE OPERATION**********************************
+    while(out)
+    {
+    printf("**********MATRIX CALCULATOR*********\n\n");
+    printf("OPERATIONS: \n");
+    printf("PRINT ARRAYS(1) \n");
+    printf("ADD A+B(2) \n");
+    printf("SUBTRACT A+B(3) \n");
+    printf("MULTIPLY A*B(4) \n");
+    printf("DETERMINANT(5) \n");
+    printf("EXIT(6) \n");
+    scanf("%d",&menu);
+    system("clear");
+    
+        switch(menu)
+        {
+            //>>>>>>>>>>>>>PRINT MATRIX>>>>>>>>>>>>>
+            case 1:
+                printf("MATRIX A: \n");
+                print_matrix(order,matrix1);
+                while(wait)
+                    {
+                        scanf("%d",&wait);
+                        if(wait)wait=0;
+                    }
+                    wait=1;
+                    system("clear");
+                break;
+            //>>>>>>>>>>>>>FINISH PROGRAM>>>>>>>>>>>>>
+            case 6:
+                out=0;
+                break;
+            default:
+                printf("\nOPTION 1-6 ONLY AVAILABLE");
+                
+        }
+    } 
+   
     return 0;
 }
 //>>>>>>>>>>>>>ENTER MATRIX FUNCTION>>>>>>>>>>>>>
@@ -47,4 +86,5 @@ void print_matrix(int size,int array[size][size])
     printf("\n");
     }
 }
+
 
