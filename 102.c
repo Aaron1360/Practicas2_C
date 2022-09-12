@@ -13,7 +13,7 @@
 
 void input_array(int rows,int cols,int array[rows][cols]);
 void print_array(int rows,int cols,int array[rows][cols]);
-void mult(int rows,int cols,int array1[rows][cols],int array2[rows][cols]);
+void mult(int rows,int cols,int array1[rows][cols],int array2[cols][1]);
 
 int main()
 {
@@ -37,7 +37,9 @@ int main()
     printf("\nMATRIX B:\n");
     print_array(cols,1,B);
     
-    
+    printf("\nPRODUCTO:\n");
+    mult(rows,cols,A,B);
+
     return 0;
 }
 
@@ -65,22 +67,20 @@ void print_array(int rows,int cols,int array[rows][cols])
     }
 }
 
-void mult(int rows,int cols,int array1[rows][cols],int array2[rows][cols])
+void mult(int rows,int cols,int array1[rows][cols],int array2[cols][1])
 {
-    int temp=0;
-    int m[rows][cols];
-     for(int i=0;i<rows;i++)
+    int m[rows][1];
+    for(int i=0;i<=cols;i++){m[i][0]=0;}
+    
+    for(int i=0;i<rows;i++)
     {
-        for(int j=0;j<cols;j++)
+        for(int j=0;j<1;j++)
         {
-            for(int k=0;k<rows;k++)
+            for(int k=0;k<cols;k++)
             {
-                temp+=(array1[i][k])*(array2[k][j]);
+                m[i][0]+=(array1[i][k])*(array2[k][0]);
             }
-            m[i][j]=temp;
-            printf("[%d] ",m[i][j]);
-            temp=0;
         }
-        printf("\n");
+        printf("[%d]\n",m[i][0]);
     }
 }
