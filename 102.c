@@ -70,7 +70,7 @@ void print_array(int rows,int cols,int array[rows][cols])
 void mult(int rows,int cols,int array1[rows][cols],int array2[cols][1])
 {
     int m[rows][1];
-    for(int i=0;i<=cols;i++){m[i][0]=0;}
+    for(int i=0;i<rows;i++){m[i][0]=0;}
     
     for(int i=0;i<rows;i++)
     {
