@@ -26,7 +26,7 @@ int main()
     int rows,cols;
     printf("enter rows and cols: \n");
     scanf("%d %d",&rows,&cols);
-    int A[rows][cols],B[cols][1],tr_A[rows][cols];
+    int A[rows][cols],B[cols][1],tr_A[rows][cols],adj_A[rows][cols];
     system("clear");
     
     //>>>>>>>PRINT ARRAYS
@@ -44,10 +44,9 @@ int main()
     print_array(cols,1,B);
     
     //>>>>>>>PRINT RESULTS
-    /*
     printf("\nPRODUCTO:\n");
     mult(rows,cols,A,B);
-    */
+    
     //>>>>>>>DETERMINANT(A)
    if(rows==cols)
    {
@@ -55,7 +54,10 @@ int main()
         //>>>>>>>TRANSPOSE(A)
         if(det(rows,A) != 0 )
         {
+            printf("\n(A)^t: \n");
             transpose(rows,A,tr_A);
+            printf("\n\nADJ(A^t):\n");
+            
             
         }
         else
