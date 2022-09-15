@@ -19,6 +19,7 @@ void mult(int rows,int cols,int array1[rows][cols],int array2[cols][1]);//MULTIP
 int det(int size,int array[size][size]);//CALCULATE THE DETERMINANT
 int cof(int size,int array[size][size],int row,int col);//COFACTORS ARRAY 
 void transpose(int size,int array[size][size],int trArray[size][size]);//TRANSPOSE MATRIX
+void subArrays(int a,int b,int size,int array1[size][size],int array2[size-1][size-1]);
 
 int main()
 {   
@@ -26,7 +27,7 @@ int main()
     int rows,cols;
     printf("enter rows and cols: \n");
     scanf("%d %d",&rows,&cols);
-    int A[rows][cols],B[cols][1],tr_A[rows][cols],adj_A[rows][cols];
+    int A[rows][cols],B[cols][1],ADJ[rows][cols],C[rows-1][cols-1],tr_A[rows][cols],INV[rows][cols];
     system("clear");
     
     //>>>>>>>PRINT ARRAYS
@@ -43,10 +44,6 @@ int main()
     printf("\nMATRIX B:\n");
     print_array(cols,1,B);
     
-    //>>>>>>>PRINT RESULTS
-    printf("\nPRODUCTO:\n");
-    mult(rows,cols,A,B);
-    
     //>>>>>>>DETERMINANT(A)
    if(rows==cols)
    {
@@ -56,9 +53,17 @@ int main()
         {
             printf("\n(A)^t: \n");
             transpose(rows,A,tr_A);
-            printf("\n\nADJ(A^t):\n");
             
-            
+            printf("\nADJ(A^t):\n");
+            for(int i=0;i<rows;i++)
+            {
+                for(int j=0;j<cols;j++)
+                {
+                    subArrays(i,j,rows,tr_A,C);
+                    ADJ[i][j]=det(rows-1,C);
+                }
+            }
+            print_array(rows,cols,ADJ);
         }
         else
         {
@@ -86,10 +91,10 @@ void input_array(int rows,int cols,int array[rows][cols])
 
 void print_array(int rows,int cols,int array[rows][cols])
 {
-    for(int j=0,spaces=1;j<rows*cols;j++,spaces++)
+    for(int j=0,lines=1;j<rows*cols;j++,lines++)
         {   
-            printf("%d ",array[0][j]);
-            if(spaces%cols==0){printf("\n");}
+            printf("%4d ",array[0][j]);
+            if(lines%cols==0){printf("\n");}
         }
 }
 
@@ -163,6 +168,25 @@ void transpose(int size,int array[size][size],int trArray[size][size])
             printf("%d ",trArray[i][j]);
         }
         printf("\n");
+    }
+}
+
+void subArrays(int a,int b,int size,int array1[size][size],int array2[size-1][size-1])
+{
+    for(int i=0,k=0;i<size;i++)
+    {
+        if(i!=a)
+        {
+            for(int j=0,l=0;j<size;j++)
+            {
+                if(j!=b)
+                {
+                    array2[k][l]=array1[i][j];
+                    l++;
+                }
+            }
+        k++;
+        }
     }
 }
 
