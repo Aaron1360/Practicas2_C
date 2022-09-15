@@ -86,14 +86,11 @@ void input_array(int rows,int cols,int array[rows][cols])
 
 void print_array(int rows,int cols,int array[rows][cols])
 {
-    for(int i=0;i<rows;i++)
-    {
-        for(int j=0;j<cols;j++)
-        {
-            printf("[%d] ",array[i][j]);
+    for(int j=0,spaces=1;j<rows*cols;j++,spaces++)
+        {   
+            printf("%d ",array[0][j]);
+            if(spaces%cols==0){printf("\n");}
         }
-        printf("\n");
-    }
 }
 
 void mult(int rows,int cols,int array1[rows][cols],int array2[cols][1])
