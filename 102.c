@@ -15,7 +15,7 @@
 //PROTOTYPES
 void input_array(int rows,int cols,int array[rows][cols]);//ENTER VALUES
 void print_array(int rows,int cols,int array[rows][cols]);//SHOW ARRAYS
-void mult(int rows,int cols,int array1[rows][cols],int array2[cols][1]);//MULTIPLY ARRAYS
+void mult(int rows,int cols,float array1[rows][cols],int array2[cols][1]);//MULTIPLY ARRAYS
 int det(int size,int array[size][size]);//CALCULATE THE DETERMINANT
 int cof(int size,int array[size][size],int row,int col);//COFACTORS ARRAY 
 void transpose(int size,int array[size][size],int trArray[size][size]);//TRANSPOSE MATRIX
@@ -27,7 +27,8 @@ int main()
     int rows,cols;
     printf("enter rows and cols: \n");
     scanf("%d %d",&rows,&cols);
-    int A[rows][cols],B[cols][1],ADJ[rows][cols],C[rows-1][cols-1],tr_A[rows][cols],INV[rows][cols];
+    int A[rows][cols],B[cols][1],ADJ[rows][cols],C[rows-1][cols-1],tr_A[rows][cols],cof_A[rows][cols];
+    float INV[rows][cols],X[rows][cols]; 
     system("clear");
     
     //>>>>>>>PRINT ARRAYS
@@ -44,35 +45,46 @@ int main()
     printf("\nMATRIX B:\n");
     print_array(cols,1,B);
     
-    //>>>>>>>DETERMINANT(A)
-   if(rows==cols)
+    //>>>>>>>DETERMINANT(A) 
+   if(rows==cols && det(rows,A)!=0)
    {
-        printf("\nDET(A): %d\n",det(rows,A));
-        //>>>>>>>TRANSPOSE(A)
-        if(det(rows,A) != 0 )
+        printf("\nDET(A) = %d\n",det(rows,A));
+        
+        //TRANSPOSE
+        printf("\nMATRIX A_TR:\n");
+        transpose(rows,A,tr_A);
+        
+        //ADJUGATE
+        printf("\nADJ(A^t)\n");
+        for(int i=0;i<rows;i++)
         {
-            printf("\n(A)^t: \n");
-            transpose(rows,A,tr_A);
-            
-            printf("\nADJ(A^t):\n");
-            for(int i=0;i<rows;i++)
+            for(int j=0;j<cols;j++)
             {
-                for(int j=0;j<cols;j++)
-                {
-                    subArrays(i,j,rows,tr_A,C);
-                    ADJ[i][j]=det(rows-1,C);
-                }
+                subArrays(i,j,rows,tr_A,C);
+                ADJ[j][i]=((i+j)%2==0?det(rows-1,C):-1*det(rows-1,C));
             }
-            print_array(rows,cols,ADJ);
         }
-        else
+        print_array(rows,cols,ADJ);
+        
+        //INVERSE
+        printf("\nINV(A)\n");
+        for(int i=0;i<rows;i++)
         {
-            printf("\n[A]^-1 EXIST ONLY IF DET(A) != 0\n\n");
+            for(int j=0;j<cols;j++)
+            {
+                INV[i][j]=(float)ADJ[j][i]/det(rows,A);
+                printf("% 4.2f ",INV[i][j]);
+            }
+            printf("\n");
         }
+        //X
+        printf("\nX=INV(A)*B\n");
+        mult(rows,cols,INV,B);
+        
    }
    else
    {
-       printf("\n\t[A] IS NOT SQUARE!\n");
+       printf("\n\t[A] IS NOT SQUARE\n");
    }
     return 0;
 }
@@ -98,9 +110,9 @@ void print_array(int rows,int cols,int array[rows][cols])
         }
 }
 
-void mult(int rows,int cols,int array1[rows][cols],int array2[cols][1])
+void mult(int rows,int cols,float array1[rows][cols],int array2[cols][1])
 {
-    int m[rows][1];
+    float m[rows][1];
     for(int i=0;i<rows;i++){m[i][0]=0;}
     
     for(int i=0;i<rows;i++)
@@ -112,7 +124,7 @@ void mult(int rows,int cols,int array1[rows][cols],int array2[cols][1])
                 m[i][0]+=(array1[i][k])*(array2[k][0]);
             }
         }
-        printf("[%d]\n",m[i][0]);
+        printf("[% 4.2f]\n",m[i][0]);
     }
 }
 
@@ -165,7 +177,7 @@ void transpose(int size,int array[size][size],int trArray[size][size])
         for(int j=0;j<size;j++)
         {
             trArray[i][j]=array[j][i];
-            printf("%d ",trArray[i][j]);
+            printf("%4d ",trArray[i][j]);
         }
         printf("\n");
     }
